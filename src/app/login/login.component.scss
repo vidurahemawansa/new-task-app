@@ -1,0 +1,56 @@
+@import '../../styles/abstracts/variables';
+@import '../../styles/abstracts/mixins';
+
+:host {
+    display: flex;
+    height: 100vh;
+    @media screen and (min-width: $tablet) {
+        justify-content: center;
+        align-items: center;
+    }
+}
+.login-container {
+    @include border-box(6px);
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10vh 16px 16px;
+    @media screen and (min-width: $tablet) {
+        border: 1px solid #eae8e8;
+        max-width: 420px;
+        padding: 16px;
+    }
+    
+    .title-row {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+            width: 90px;
+        }
+        
+        h3 {
+            font-weight: 600;
+            margin: 0 0 5vh;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        .form-group {
+            margin: 0 0 32px;
+            color: $label-color;
+            mat-error {
+                color: #ff0000;
+            }
+        }
+        button {
+            margin: 12px 0 0;
+            @include btn-style(4px, 0, $secondary-bg-color, $secondary-bg-color);
+        }
+    }
+}
