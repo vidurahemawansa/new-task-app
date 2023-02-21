@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormControl, Validators, FormGroup} from '@angular/forms';
 import {emailValidator} from '../shared//email-validator.directive';
 
+import { AuthService } from '@auth0/auth0-angular';
+
 interface loginDetails {
   user: string;
   password: string;
@@ -17,15 +19,19 @@ export class LoginComponent {
   taskAdmin: loginDetails;
   
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    public auth: AuthService
+    ) 
+    {
     this.taskAdmin = {} as loginDetails;
    }
 
   ngOnInit() {
-    this.loginForm = this.fb.group({
-      user: ['', [Validators.required, emailValidator()]],
-      password: ['', Validators.required]
-    });
+    // this.loginForm = this.fb.group({
+    //   user: ['', [Validators.required, emailValidator()]],
+    //   password: ['', Validators.required]
+    // });
   }
 
   get user() {
@@ -40,16 +46,16 @@ export class LoginComponent {
 
   }
 
-  public validate(): void {
-    if (this.loginForm.invalid) {
-      for (const control of Object.keys(this.loginForm.controls)) {
-        this.loginForm.controls[control].markAsTouched();
-      }
-      return;
-    }
+  // public validate(): void {
+  //   if (this.loginForm.invalid) {
+  //     for (const control of Object.keys(this.loginForm.controls)) {
+  //       this.loginForm.controls[control].markAsTouched();
+  //     }
+  //     return;
+  //   }
 
-    this.taskAdmin = this.loginForm.value;
-  }
+  //   this.taskAdmin = this.loginForm.value;
+  // }
 
   
 }
